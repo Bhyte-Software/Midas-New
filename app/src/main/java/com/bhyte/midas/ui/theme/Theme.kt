@@ -10,39 +10,49 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80,
-    background = Black80
-)
-
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40,
-    background = White80
+    primary = Color.White,
+    secondary = Color.White,
+    tertiary = Color.White,
+    background = Color.White,
 
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
+    surface = Color.White,
     onPrimary = Color.White,
     onSecondary = Color.White,
     onTertiary = Color.White,
     onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    onSurface = Color(0xFF000000),
+    onSurfaceVariant = Color(0xFF000000),
+    secondaryContainer = Color(0xFFFFDE73),
+    onSecondaryContainer = Color(0xFF000000),
+)
+
+private val DarkColorScheme = darkColorScheme(
+    primary = Color(0xFF0E0E0E),
+    secondary = Color.White,
+    tertiary = Color.White,
+    background = Color(0xFF0E0E0E),
+
+    surface = Color(0xFF0E0E0E),
+    onPrimary = Color.White,
+    onSecondary = Color.White,
+    onTertiary = Color.White,
+    onBackground = Color(0xFF1C1B1F),
+    onSurface = Color(0xFFFFFFFF),
+    onSurfaceVariant = Color(0xFFD3D3D3),
+    secondaryContainer = Color(0xFFF5BF00),
+    onSecondaryContainer = Color.White,
 )
 
 @Composable
 fun MidasTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
@@ -67,7 +77,7 @@ fun MidasTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = typography,
         content = content
     )
 }
