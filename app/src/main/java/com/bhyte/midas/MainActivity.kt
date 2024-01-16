@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.bhyte.midas.components.navigation.BottomNavigationBar
 import com.bhyte.midas.components.navigation.getBottomNavigationItems
+import com.bhyte.midas.presentation.onboarding.OnBoardingScreen
 import com.bhyte.midas.ui.theme.MidasTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,8 +25,8 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         setContent {
             MidasTheme {
-                val items = getBottomNavigationItems()
-                Surface(
+                //val items = getBottomNavigationItems()
+                /*Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
@@ -36,6 +37,13 @@ class MainActivity : ComponentActivity() {
                     ) {
 
                     }
+                }
+                 */
+                Surface (
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    OnBoardingScreen()
                 }
             }
         }
