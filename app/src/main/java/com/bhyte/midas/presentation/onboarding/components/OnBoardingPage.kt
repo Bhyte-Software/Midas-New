@@ -1,6 +1,5 @@
 package com.bhyte.midas.presentation.onboarding.components
 
-import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -42,14 +41,17 @@ fun OnBoardingPage(
             )
             Text(
                 text = page.description,
-                modifier = Modifier.padding(horizontal = SmallPadding).padding(top = 2.dp),
+                modifier = Modifier
+                    .padding(horizontal = SmallPadding)
+                    .padding(top = 2.dp),
                 style = MaterialTheme.typography.bodyLarge,
             )
             Spacer(modifier = Modifier.height(MediumPadding))
 
             Image(
                 modifier = Modifier
-                    .padding(horizontal = SmallPadding).padding(top = MediumPadding)
+                    .padding(horizontal = SmallPadding)
+                    .padding(top = MediumPadding)
                     .fillMaxWidth(),
                 painter = painterResource(id = page.image),
                 contentDescription = null,
@@ -60,13 +62,13 @@ fun OnBoardingPage(
     }
 }
 
-@Preview(uiMode = UI_MODE_NIGHT_NO, showBackground = true)
+@Preview(showBackground = true)
 @Preview(uiMode = UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun OnBoardingPagePreview() {
     MidasTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            OnBoardingPage(page = pages[6])
+            OnBoardingPage(page = pages[5])
         }
     }
 }

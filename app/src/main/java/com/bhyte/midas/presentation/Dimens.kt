@@ -7,5 +7,5 @@ object Dimens {
     val SmallPadding = 12.dp
     val MediumPadding = 24.dp
     val LargePadding = 30.dp
-    
+
 }
