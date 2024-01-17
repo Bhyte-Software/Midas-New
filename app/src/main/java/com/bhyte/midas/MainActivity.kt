@@ -15,6 +15,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.bhyte.midas.components.navigation.BottomNavigationBar
 import com.bhyte.midas.components.navigation.getBottomNavigationItems
 import com.bhyte.midas.presentation.account.login.PhoneLoginScreen
+import com.bhyte.midas.presentation.account.signup.VerifyPhoneSignUpScreen
 import com.bhyte.midas.ui.theme.MidasTheme
 
 class MainActivity : ComponentActivity() {
@@ -42,7 +43,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    PhoneLoginScreen()
+                    VerifyPhoneSignUpScreen()
                 }
             }
         }
