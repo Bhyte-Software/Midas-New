@@ -1,4 +1,4 @@
-package com.bhyte.midas.presentation.account.signup
+package com.bhyte.midas.presentation.auth.signup
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement

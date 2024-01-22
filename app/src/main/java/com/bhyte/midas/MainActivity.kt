@@ -1,69 +1,38 @@
 package com.bhyte.midas
 
-import android.annotation.SuppressLint
-import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.bhyte.midas.components.navigation.BottomNavigationBar
-import com.bhyte.midas.components.navigation.getBottomNavigationItems
-import com.bhyte.midas.presentation.account.login.PhoneLoginScreen
-import com.bhyte.midas.presentation.account.signup.VerifyPhoneSignUpScreen
+import com.bhyte.midas.presentation.navgraph.NavGraph
 import com.bhyte.midas.ui.theme.MidasTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+    private val viewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
+        installSplashScreen().apply {
+            setKeepOnScreenCondition {
+                viewModel.splashCondition
+            }
+        }
         setContent {
             MidasTheme {
-                //val items = getBottomNavigationItems()
-                /*Surface(
+                Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Scaffold(
-                        bottomBar = {
-                            BottomNavigationBar(items = items)
-                        }
-                    ) {
-
-                    }
-                }
-                 */
-                Surface (
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    VerifyPhoneSignUpScreen()
+                    val startDestination = viewModel.startDestination
+                    NavGraph(startDestination = startDestination)
                 }
             }
         }
-    }
-}
-
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Composable
-fun BottomNavigationBarPreviewLight() {
-    MidasTheme {
-        val items = getBottomNavigationItems()
-        BottomNavigationBar(items = items)
-    }
-}
-
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun BottomNavigationBarPreviewDark() {
-    MidasTheme {
-        val items = getBottomNavigationItems()
-        BottomNavigationBar(items = items)
     }
 }

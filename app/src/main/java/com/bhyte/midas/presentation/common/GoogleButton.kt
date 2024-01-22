@@ -33,7 +33,7 @@ fun GoogleButton(
     text: String,
     onClick: () -> Unit
 ) {
-    val border = colorResource(id = R.color.background_light)
+    val border = colorResource(id = R.color.background_lighter)
     Surface(color = MaterialTheme.colorScheme.background) {
         Button(
             onClick = onClick,

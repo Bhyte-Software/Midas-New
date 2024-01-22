@@ -28,7 +28,9 @@ import com.bhyte.midas.presentation.onboarding.components.OnBoardingPage
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnBoardingScreen() {
+fun OnBoardingScreen(
+    event: (OnBoardingEvent) -> Unit
+) {
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState = rememberPagerState(initialPage = 0) {
             pages.size
@@ -55,9 +57,7 @@ fun OnBoardingScreen() {
         )
 
         HorizontalPager(
-            state = pagerState,
-            modifier = Modifier.weight(1f),
-            verticalAlignment = Alignment.Top
+            state = pagerState, modifier = Modifier.weight(1f), verticalAlignment = Alignment.Top
         ) { index ->
             OnBoardingPage(page = pages[index])
         }
@@ -71,8 +71,7 @@ fun OnBoardingScreen() {
 
             if (buttonState.value[0].isNotEmpty() && buttonState.value[1].isNotEmpty()) {
                 Box(
-                    modifier = Modifier
-                        .weight(1f)
+                    modifier = Modifier.weight(1f)
                 ) {
                     PrimaryButton(text = buttonState.value[0]) {
 
@@ -82,12 +81,11 @@ fun OnBoardingScreen() {
                 Spacer(modifier = Modifier.width(15.dp))
 
                 Box(
-                    modifier = Modifier
-                        .weight(1f)
+                    modifier = Modifier.weight(1f)
                 ) {
-                    PrimaryButton(text = buttonState.value[1]) {
-
-                    }
+                    PrimaryButton(text = buttonState.value[1], onClick = {
+                        event(OnBoardingEvent.SaveAppEntry)
+                    })
                 }
             }
 
@@ -102,14 +100,14 @@ fun OnBoardingScreen() {
                 .navigationBarsPadding()
         ) {
             if (buttonState.value[2].isNotEmpty()) {
-                PrimaryButton(text = buttonState.value[2]) {
-
-                }
+                PrimaryButton(text = buttonState.value[2], onClick = {
+                    event(OnBoardingEvent.SaveAppEntry)
+                })
             }
             if (buttonState.value[3].isNotEmpty()) {
-                GoogleButton(text = buttonState.value[3]) {
-
-                }
+                GoogleButton(text = buttonState.value[3], onClick = {
+                    event(OnBoardingEvent.SaveAppEntry)
+                })
             }
 
         }

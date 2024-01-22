@@ -28,6 +28,7 @@ fun OutlineIconButton(
     imageDrawableId: Int
 ) {
     val backgroundColor = colorResource(id = R.color.background)
+    val borderColor = colorResource(id = R.color.background_lighter)
     Surface(
         color = MaterialTheme.colorScheme.background,
     ) {
@@ -39,7 +40,7 @@ fun OutlineIconButton(
             modifier = Modifier
                 .height(50.dp)
                 .fillMaxWidth()
-                .border(1.dp, Color.Gray, RoundedCornerShape(size = 1000.dp)),
+                .border(1.dp, borderColor, RoundedCornerShape(size = 1000.dp)),
         ) {
             Image(
                 painter = painterResource(id = imageDrawableId),

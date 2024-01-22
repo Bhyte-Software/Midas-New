@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -67,11 +69,27 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    // Datastore Preferences
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // Splash API
     implementation("androidx.core:core-splashscreen:1.0.1")
+
+    // Material Icons Extended
     implementation("androidx.compose.material:material-icons-extended:1.5.4")
+
+    // Navigation Compose
     implementation("androidx.navigation:navigation-compose:2.7.6")
 
-    // Pin View
-    
+    // Dagger Hilt
+    implementation("com.google.dagger:hilt-android:2.50")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+    kapt("com.google.dagger:hilt-android-compiler:2.50")
 
+}
+
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

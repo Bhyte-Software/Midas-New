@@ -1,4 +1,4 @@
-package com.bhyte.midas.presentation.account.signup
+package com.bhyte.midas.presentation.auth.signup
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -22,11 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bhyte.midas.presentation.Dimens
 import com.bhyte.midas.presentation.common.BackButton
-import com.bhyte.midas.presentation.common.PinView
 import com.bhyte.midas.presentation.common.UnderlineTextButton
 import com.bhyte.midas.ui.theme.MidasTheme
 import com.bhyte.midas.ui.theme.archivoFontFamily
-import com.yogeshpaliyal.speld.PinInput
 
 @Composable
 fun VerifyPhoneSignUpScreen() {
