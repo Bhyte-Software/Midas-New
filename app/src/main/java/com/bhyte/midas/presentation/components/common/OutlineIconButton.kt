@@ -1,9 +1,12 @@
-package com.bhyte.midas.presentation.common
+package com.bhyte.midas.presentation.components.common
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -19,22 +22,29 @@ import com.bhyte.midas.R
 import com.bhyte.midas.ui.theme.MidasTheme
 
 @Composable
-fun BackButton(
-    onClick: () -> Unit
+fun OutlineIconButton(
+    onClick: () -> Unit,
+    imageDrawableId: Int
 ) {
-    val backgroundColor = colorResource(id = R.color.background_light)
-    Surface(color = MaterialTheme.colorScheme.background, modifier = Modifier.size(50.dp)) {
+    val backgroundColor = colorResource(id = R.color.background)
+    val borderColor = colorResource(id = R.color.background_lighter)
+    Surface(
+        color = MaterialTheme.colorScheme.background,
+    ) {
         FilledIconButton(
             onClick = onClick,
             colors = IconButtonDefaults.iconButtonColors(
                 containerColor = backgroundColor,
             ),
-            modifier = Modifier.size(50.dp)
+            modifier = Modifier
+                .height(50.dp)
+                .fillMaxWidth()
+                .border(1.dp, borderColor, RoundedCornerShape(size = 1000.dp)),
         ) {
             Image(
-                painter = painterResource(id = R.drawable.back),
+                painter = painterResource(id = imageDrawableId),
                 contentDescription = null,
-                modifier = Modifier.size(20.dp),
+                modifier = Modifier.size(26.dp),
                 contentScale = ContentScale.Fit
             )
         }
@@ -44,12 +54,13 @@ fun BackButton(
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
-fun BackButtonPreview() {
+fun OutlineIconButtonPreview() {
     MidasTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            BackButton {
-
-            }
+            OutlineIconButton(
+                onClick = {},
+                imageDrawableId = R.drawable.facebook
+            )
         }
     }
 }

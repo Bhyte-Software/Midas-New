@@ -1,20 +1,14 @@
 package com.bhyte.midas.presentation.auth.signup
 
 import android.content.res.Configuration
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -26,9 +20,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -36,19 +27,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.bhyte.midas.R
-import com.bhyte.midas.presentation.auth.components.PrimaryTextField
+import com.bhyte.midas.presentation.auth.components.PasswordToggleTextField
 import com.bhyte.midas.presentation.components.common.BackButton
 import com.bhyte.midas.presentation.components.common.PrimaryButton
 import com.bhyte.midas.presentation.constants.Dimens
-import com.bhyte.midas.presentation.navgraph.Route
 import com.bhyte.midas.ui.theme.MidasTheme
 import com.bhyte.midas.ui.theme.archivoFontFamily
 
 @Composable
-fun EnterPhoneSignUpScreen(navController: NavController) {
-    var phoneValue by remember { mutableStateOf("") }
-    val backgroundColor = colorResource(id = R.color.background_light)
+fun CreatePasswordSignUpScreen(navController: NavController) {
+    var passwordValue by remember { mutableStateOf("") }
+    var repeatPasswordValue by remember {
+        mutableStateOf("")
+    }
+    var showPassword by remember { mutableStateOf(false) }
 
     Surface(color = MaterialTheme.colorScheme.background) {
         Column(
@@ -64,7 +56,7 @@ fun EnterPhoneSignUpScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(20.dp))
 
             Text(
-                text = "Verify your phone\n" + "number with a code",
+                text = "Create your password",
                 style = MaterialTheme.typography.headlineLarge,
                 fontFamily = archivoFontFamily,
                 fontWeight = FontWeight.Medium
@@ -73,7 +65,7 @@ fun EnterPhoneSignUpScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(5.dp))
 
             Text(
-                text = "We’ll send you a code - it helps us keep your account secure",
+                text = "At least 8 characters combining letters, numbers and characters",
                 style = MaterialTheme.typography.bodyLarge,
                 fontFamily = archivoFontFamily,
                 fontWeight = FontWeight.Normal
@@ -81,42 +73,35 @@ fun EnterPhoneSignUpScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(30.dp))
 
-            Row {
-                Row(
-                    modifier = Modifier
-                        .height(56.dp)
-                        .background(
-                            backgroundColor, RoundedCornerShape(topEnd = 6.dp, topStart = 6.dp)
-                        )
-                        .padding(horizontal = 10.dp, vertical = 16.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ghana),
-                        contentDescription = "Ghana flag",
-                        modifier = Modifier.size(40.dp),
-                        contentScale = ContentScale.Fit
-                    )
+            PasswordToggleTextField(
+                label = "Password",
+                placeholder = "Enter your password",
+                value = passwordValue,
+                onValueChange = { passwordValue = it },
+                showPassword = showPassword,
+                onTogglePassword = { showPassword = !showPassword },
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Done
+                ),
+                modifier = Modifier.fillMaxWidth()
+            )
 
-                    Text(text = "+233", modifier = Modifier)
+            Spacer(modifier = Modifier.height(10.dp))
 
-                    Spacer(modifier = Modifier.width(8.dp))
-                }
-
-                Spacer(modifier = Modifier.width(10.dp))
-
-                PrimaryTextField(
-                    label = "Phone",
-                    placeholder = "557661362",
-                    value = phoneValue,
-                    onValueChange = { phoneValue = it },
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Phone, imeAction = ImeAction.Done
-                    ),
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
+            PasswordToggleTextField(
+                label = "Repeat Password",
+                placeholder = "Enter your password",
+                value = repeatPasswordValue,
+                onValueChange = { repeatPasswordValue = it },
+                showPassword = showPassword,
+                onTogglePassword = { showPassword = !showPassword },
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Done
+                ),
+                modifier = Modifier.fillMaxWidth()
+            )
 
             Column(
                 modifier = Modifier
@@ -127,26 +112,22 @@ fun EnterPhoneSignUpScreen(navController: NavController) {
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                PrimaryButton(text = "Next") {
 
-                Spacer(modifier = Modifier.height(30.dp))
-
-                PrimaryButton(text = "Send Code") {
-                    navController.navigate(Route.VerifyPhoneSignUpScreen.route)
                 }
             }
         }
     }
 }
 
-
 @Preview(showBackground = true)
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun EnterPhoneSignUpScreenPreview() {
+fun CreatePasswordSignUpScreenPreview() {
     val previewNavController = rememberNavController()
     MidasTheme {
-        Surface {
-            EnterPhoneSignUpScreen(navController = previewNavController)
+        Surface(color = MaterialTheme.colorScheme.background) {
+            CreatePasswordSignUpScreen(navController = previewNavController)
         }
     }
 }

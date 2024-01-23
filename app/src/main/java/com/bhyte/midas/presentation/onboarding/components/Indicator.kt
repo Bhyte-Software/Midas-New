@@ -7,22 +7,24 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
-import com.bhyte.midas.presentation.Dimens.SmallPadding
+import com.bhyte.midas.R
+import com.bhyte.midas.presentation.constants.Dimens.SmallPadding
 
 @Composable
 fun Indicator(
     modifier: Modifier = Modifier,
     pageSize: Int,
     selectedPage: Int,
-    selectedColor: Color = MaterialTheme.colorScheme.secondaryContainer,
-    unselectedColor: Color = Color.LightGray
 ) {
+
+    val selectedColor = colorResource(id = R.color.primary)
+    val unselectedColor = colorResource(id = R.color.background_lighter)
+
     Row(modifier = modifier.padding(horizontal = SmallPadding), horizontalArrangement = Arrangement.SpaceBetween) {
         repeat(pageSize) { page ->
             Box(

@@ -13,10 +13,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -24,20 +20,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.bhyte.midas.presentation.auth.components.PinView
-import com.bhyte.midas.presentation.constants.Dimens
+import com.bhyte.midas.presentation.auth.components.CountryDropdown
 import com.bhyte.midas.presentation.components.common.BackButton
 import com.bhyte.midas.presentation.components.common.PrimaryButton
-import com.bhyte.midas.presentation.components.common.UnderlineTextButton
+import com.bhyte.midas.presentation.constants.Dimens
 import com.bhyte.midas.presentation.navgraph.Route
 import com.bhyte.midas.ui.theme.MidasTheme
 import com.bhyte.midas.ui.theme.archivoFontFamily
 
 @Composable
-fun VerifyPhoneSignUpScreen(navController: NavController) {
-    var otpValue by remember {
-        mutableStateOf("")
-    }
+fun CountryOfResidenceSignUpScreen(navController: NavController) {
     Surface(color = MaterialTheme.colorScheme.background) {
         Column(
             modifier = Modifier
@@ -52,7 +44,7 @@ fun VerifyPhoneSignUpScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(20.dp))
 
             Text(
-                text = "We just sent an SMS",
+                text = "Country of residence",
                 style = MaterialTheme.typography.headlineLarge,
                 fontFamily = archivoFontFamily,
                 fontWeight = FontWeight.Medium
@@ -61,7 +53,7 @@ fun VerifyPhoneSignUpScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(5.dp))
 
             Text(
-                text = "Enter the security code we just sent to",
+                text = "Midas is currently only available in Ghana",
                 style = MaterialTheme.typography.bodyLarge,
                 fontFamily = archivoFontFamily,
                 fontWeight = FontWeight.Normal
@@ -69,25 +61,7 @@ fun VerifyPhoneSignUpScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(30.dp))
 
-            PinView(
-                modifier = Modifier.fillMaxWidth(), otpText = otpValue,
-                onOtpTextChange = { value, _ ->
-                    otpValue = value
-                }
-            )
-
-            Spacer(modifier = Modifier.height(30.dp))
-
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                UnderlineTextButton(text = "I didn't receive a code") {
-
-                }
-            }
-
+            CountryDropdown()
 
             Column(
                 modifier = Modifier
@@ -98,23 +72,22 @@ fun VerifyPhoneSignUpScreen(navController: NavController) {
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                PrimaryButton(text = "Verify OTP") {
-                    navController.navigate(Route.CountryOfResidenceSignUpScreen.route)
+                PrimaryButton(text = "Next") {
+                    navController.navigate(Route.EnterNameSignUpScreen.route)
                 }
             }
-
         }
     }
 }
 
 @Preview(showBackground = true)
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun VerifyPhoneSignUpScreenPreview() {
-    val previewController = rememberNavController()
+fun CountryOfResidenceSignUpScreenPreview() {
     MidasTheme {
-        Surface {
-            VerifyPhoneSignUpScreen(navController = previewController)
+        val previewNavController = rememberNavController()
+        Surface(color = MaterialTheme.colorScheme.background) {
+            CountryOfResidenceSignUpScreen(navController = previewNavController)
         }
     }
 }

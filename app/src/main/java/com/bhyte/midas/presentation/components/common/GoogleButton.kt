@@ -1,4 +1,4 @@
-package com.bhyte.midas.presentation.common
+package com.bhyte.midas.presentation.components.common
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image

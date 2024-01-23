@@ -18,8 +18,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bhyte.midas.presentation.Dimens.MediumPadding
-import com.bhyte.midas.presentation.Dimens.SmallPadding
+import com.bhyte.midas.presentation.constants.Dimens.MediumPadding
+import com.bhyte.midas.presentation.constants.Dimens.SmallPadding
 import com.bhyte.midas.presentation.onboarding.Page
 import com.bhyte.midas.presentation.onboarding.pages
 import com.bhyte.midas.ui.theme.MidasTheme

@@ -29,20 +29,23 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.bhyte.midas.R
-import com.bhyte.midas.presentation.Dimens.MediumPadding
-import com.bhyte.midas.presentation.Dimens.SmallPadding
-import com.bhyte.midas.presentation.common.BackButton
-import com.bhyte.midas.presentation.common.OutlineIconButton
-import com.bhyte.midas.presentation.common.PasswordToggleTextField
-import com.bhyte.midas.presentation.common.PrimaryButton
-import com.bhyte.midas.presentation.common.PrimaryTextField
-import com.bhyte.midas.presentation.common.UnderlineTextButton
+import com.bhyte.midas.presentation.constants.Dimens.MediumPadding
+import com.bhyte.midas.presentation.constants.Dimens.SmallPadding
+import com.bhyte.midas.presentation.components.common.BackButton
+import com.bhyte.midas.presentation.components.common.OutlineIconButton
+import com.bhyte.midas.presentation.auth.components.PasswordToggleTextField
+import com.bhyte.midas.presentation.components.common.PrimaryButton
+import com.bhyte.midas.presentation.auth.components.PrimaryTextField
+import com.bhyte.midas.presentation.components.common.UnderlineTextButton
+import com.bhyte.midas.presentation.navgraph.Route
 import com.bhyte.midas.ui.theme.MidasTheme
 import com.bhyte.midas.ui.theme.archivoFontFamily
 
 @Composable
-fun EmailLoginScreen() {
+fun EmailLoginScreen(navController: NavHostController) {
     var emailValue by remember { mutableStateOf("") }
     var passwordValue by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
@@ -57,7 +60,7 @@ fun EmailLoginScreen() {
                 .padding(top = MediumPadding)
         ) {
             BackButton {
-
+                navController.popBackStack()
             }
             Spacer(modifier = Modifier.height(20.dp))
 
@@ -112,7 +115,7 @@ fun EmailLoginScreen() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 UnderlineTextButton(text = "Trouble logging in?") {
-
+                    navController.navigate(Route.ForgotEmailPasswordScreen.route)
                 }
             }
 
@@ -141,7 +144,9 @@ fun EmailLoginScreen() {
                     }
                     Spacer(modifier = Modifier.width(12.dp))
                     Box(modifier = Modifier.weight(0.5f)) {
-                        OutlineIconButton(onClick = {}, imageDrawableId = R.drawable.phone)
+                        OutlineIconButton(onClick = {
+                            navController.navigate(Route.PhoneLoginScreen.route)
+                        }, imageDrawableId = R.drawable.phone)
                     }
                     Spacer(modifier = Modifier.width(12.dp))
                     Box(modifier = Modifier.weight(0.5f)) {
@@ -158,9 +163,10 @@ fun EmailLoginScreen() {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun EmailLoginScreenPreview() {
+    val previewNavController = rememberNavController()
     MidasTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            EmailLoginScreen()
+            EmailLoginScreen(navController = previewNavController)
         }
     }
 }

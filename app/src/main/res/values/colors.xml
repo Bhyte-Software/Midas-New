@@ -14,6 +14,9 @@
     <color name="background_light">#EEEEEE</color>
     <color name="background_lighter">#E6E6E6</color>
     <color name="text_light">#232323</color>
+    <color name="text">#000000</color>
+    <color name="cell">#FFF6DA</color>
+
 
     <color name="back_icon">#1A1C1E</color>
 </resources>

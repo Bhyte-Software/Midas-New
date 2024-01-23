@@ -1,4 +1,4 @@
-package com.bhyte.midas.presentation.auth.signup
+package com.bhyte.midas.presentation.auth.login.reset
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -34,22 +34,22 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.bhyte.midas.R
 import com.bhyte.midas.presentation.auth.components.PrimaryTextField
 import com.bhyte.midas.presentation.components.common.BackButton
 import com.bhyte.midas.presentation.components.common.PrimaryButton
+import com.bhyte.midas.presentation.components.common.UnderlineTextButton
 import com.bhyte.midas.presentation.constants.Dimens
 import com.bhyte.midas.presentation.navgraph.Route
 import com.bhyte.midas.ui.theme.MidasTheme
 import com.bhyte.midas.ui.theme.archivoFontFamily
 
 @Composable
-fun EnterPhoneSignUpScreen(navController: NavController) {
+fun ForgotPhonePasswordScreen(navController: NavHostController) {
     var phoneValue by remember { mutableStateOf("") }
     val backgroundColor = colorResource(id = R.color.background_light)
-
     Surface(color = MaterialTheme.colorScheme.background) {
         Column(
             modifier = Modifier
@@ -60,93 +60,101 @@ fun EnterPhoneSignUpScreen(navController: NavController) {
             BackButton {
                 navController.popBackStack()
             }
-
             Spacer(modifier = Modifier.height(20.dp))
 
             Text(
-                text = "Verify your phone\n" + "number with a code",
+                text = "Forgot Password",
                 style = MaterialTheme.typography.headlineLarge,
                 fontFamily = archivoFontFamily,
                 fontWeight = FontWeight.Medium
             )
-
-            Spacer(modifier = Modifier.height(5.dp))
+            Spacer(modifier = Modifier.height(10.dp))
 
             Text(
-                text = "We’ll send you a code - it helps us keep your account secure",
+                text = "Enter phone number associated with your Midas account to reset password",
+                modifier = Modifier,
                 style = MaterialTheme.typography.bodyLarge,
-                fontFamily = archivoFontFamily,
-                fontWeight = FontWeight.Normal
             )
 
             Spacer(modifier = Modifier.height(30.dp))
 
-            Row {
-                Row(
-                    modifier = Modifier
-                        .height(56.dp)
-                        .background(
-                            backgroundColor, RoundedCornerShape(topEnd = 6.dp, topStart = 6.dp)
+            Column(modifier = Modifier.weight(1f)) {
+                Row {
+                    Row(
+                        modifier = Modifier
+                            .height(56.dp)
+                            .background(
+                                backgroundColor,
+                                RoundedCornerShape(topEnd = 6.dp, topStart = 6.dp)
+                            )
+                            .padding(horizontal = 10.dp, vertical = 16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ghana),
+                            contentDescription = "Ghana flag",
+                            modifier = Modifier.size(40.dp),
+                            contentScale = ContentScale.Fit
                         )
-                        .padding(horizontal = 10.dp, vertical = 16.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ghana),
-                        contentDescription = "Ghana flag",
-                        modifier = Modifier.size(40.dp),
-                        contentScale = ContentScale.Fit
+
+                        Text(text = "+233", modifier = Modifier)
+
+                        Spacer(modifier = Modifier.width(8.dp))
+                    }
+
+                    Spacer(modifier = Modifier.width(10.dp))
+
+                    PrimaryTextField(
+                        label = "Phone",
+                        placeholder = "557661362",
+                        value = phoneValue,
+                        onValueChange = { phoneValue = it },
+                        keyboardOptions = KeyboardOptions.Default.copy(
+                            keyboardType = KeyboardType.Phone,
+                            imeAction = ImeAction.Done
+                        ),
+                        modifier = Modifier.fillMaxWidth()
                     )
-
-                    Text(text = "+233", modifier = Modifier)
-
-                    Spacer(modifier = Modifier.width(8.dp))
                 }
-
-                Spacer(modifier = Modifier.width(10.dp))
-
-                PrimaryTextField(
-                    label = "Phone",
-                    placeholder = "557661362",
-                    value = phoneValue,
-                    onValueChange = { phoneValue = it },
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Phone, imeAction = ImeAction.Done
-                    ),
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth()
-                    .navigationBarsPadding()
-                    .padding(bottom = 20.dp),
-                verticalArrangement = Arrangement.Bottom,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
 
                 Spacer(modifier = Modifier.height(30.dp))
 
-                PrimaryButton(text = "Send Code") {
-                    navController.navigate(Route.VerifyPhoneSignUpScreen.route)
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    UnderlineTextButton(text = "Remember password? Login") {
+                        navController.navigate(Route.PhoneLoginScreen.route)
+                    }
                 }
             }
+
+
+
+            Column(
+                modifier = Modifier
+                    .navigationBarsPadding()
+                    .padding(bottom = 20.dp)
+            ) {
+                PrimaryButton(text = "Next") {
+
+                }
+            }
+
         }
     }
 }
 
-
 @Preview(showBackground = true)
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun EnterPhoneSignUpScreenPreview() {
+fun ForgotPhonePasswordScreenPreview() {
     val previewNavController = rememberNavController()
     MidasTheme {
-        Surface {
-            EnterPhoneSignUpScreen(navController = previewNavController)
+        Surface(color = MaterialTheme.colorScheme.background) {
+            ForgotPhonePasswordScreen(navController = previewNavController)
         }
     }
 }

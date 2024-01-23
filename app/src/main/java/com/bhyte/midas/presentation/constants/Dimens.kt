@@ -1,4 +1,4 @@
-package com.bhyte.midas.presentation
+package com.bhyte.midas.presentation.constants
 
 import androidx.compose.ui.unit.dp
 

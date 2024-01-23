@@ -20,9 +20,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.bhyte.midas.presentation.Dimens.SmallPadding
-import com.bhyte.midas.presentation.common.GoogleButton
-import com.bhyte.midas.presentation.common.PrimaryButton
+import com.bhyte.midas.presentation.constants.Dimens.SmallPadding
+import com.bhyte.midas.presentation.components.common.GoogleButton
+import com.bhyte.midas.presentation.components.common.PrimaryButton
 import com.bhyte.midas.presentation.onboarding.components.Indicator
 import com.bhyte.midas.presentation.onboarding.components.OnBoardingPage
 
@@ -73,8 +73,9 @@ fun OnBoardingScreen(
                 Box(
                     modifier = Modifier.weight(1f)
                 ) {
+                    // Log in Button
                     PrimaryButton(text = buttonState.value[0]) {
-
+                        event(OnBoardingEvent.SaveAppEntry)
                     }
                 }
 
@@ -83,6 +84,7 @@ fun OnBoardingScreen(
                 Box(
                     modifier = Modifier.weight(1f)
                 ) {
+                    // Register Button
                     PrimaryButton(text = buttonState.value[1], onClick = {
                         event(OnBoardingEvent.SaveAppEntry)
                     })
@@ -100,11 +102,13 @@ fun OnBoardingScreen(
                 .navigationBarsPadding()
         ) {
             if (buttonState.value[2].isNotEmpty()) {
+                // Get Started Button
                 PrimaryButton(text = buttonState.value[2], onClick = {
                     event(OnBoardingEvent.SaveAppEntry)
                 })
             }
             if (buttonState.value[3].isNotEmpty()) {
+                // Sign In With Google Button
                 GoogleButton(text = buttonState.value[3], onClick = {
                     event(OnBoardingEvent.SaveAppEntry)
                 })

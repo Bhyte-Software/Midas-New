@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.bhyte.midas.presentation.common
+package com.bhyte.midas.presentation.auth.components
 
 
 import androidx.compose.foundation.clickable

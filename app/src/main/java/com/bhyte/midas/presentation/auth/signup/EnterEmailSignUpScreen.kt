@@ -29,15 +29,19 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bhyte.midas.presentation.Dimens
-import com.bhyte.midas.presentation.common.CloseButton
-import com.bhyte.midas.presentation.common.PrimaryButton
-import com.bhyte.midas.presentation.common.PrimaryTextField
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.bhyte.midas.presentation.constants.Dimens
+import com.bhyte.midas.presentation.components.common.CloseButton
+import com.bhyte.midas.presentation.components.common.PrimaryButton
+import com.bhyte.midas.presentation.auth.components.PrimaryTextField
+import com.bhyte.midas.presentation.components.common.UnderlineTextButton
+import com.bhyte.midas.presentation.navgraph.Route
 import com.bhyte.midas.ui.theme.MidasTheme
 import com.bhyte.midas.ui.theme.archivoFontFamily
 
 @Composable
-fun EmailSignUpScreen() {
+fun EmailSignUpScreen(navController: NavController) {
     var emailValue by remember { mutableStateOf("") }
     Surface(color = MaterialTheme.colorScheme.background) {
         Column(
@@ -72,6 +76,18 @@ fun EmailSignUpScreen() {
                 ),
                 modifier = Modifier.fillMaxWidth()
             )
+
+            Spacer(modifier = Modifier.height(30.dp))
+
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                UnderlineTextButton(text = "Already have an account? Login") {
+                    navController.navigate(Route.EmailLoginScreen.route)
+                }
+            }
 
             Column(
                 modifier = Modifier
@@ -124,7 +140,7 @@ fun EmailSignUpScreen() {
                 Spacer(modifier = Modifier.height(30.dp))
 
                 PrimaryButton(text = "Next") {
-
+                    navController.navigate(Route.EnterPhoneSignUpScreen.route)
                 }
             }
         }
@@ -136,9 +152,10 @@ fun EmailSignUpScreen() {
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun EmailSignUpScreenPreview() {
+    val previewNavController = rememberNavController()
     MidasTheme {
         Surface {
-            EmailSignUpScreen()
+            EmailSignUpScreen(navController = previewNavController)
         }
     }
 }

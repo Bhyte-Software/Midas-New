@@ -1,8 +1,7 @@
-package com.bhyte.midas.presentation.common
+package com.bhyte.midas.presentation.components.common
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -19,7 +18,7 @@ import com.bhyte.midas.R
 import com.bhyte.midas.ui.theme.MidasTheme
 
 @Composable
-fun CloseButton(
+fun BackButton(
     onClick: () -> Unit
 ) {
     val backgroundColor = colorResource(id = R.color.background_light)
@@ -32,7 +31,7 @@ fun CloseButton(
             modifier = Modifier.size(50.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.close),
+                painter = painterResource(id = R.drawable.back),
                 contentDescription = null,
                 modifier = Modifier.size(20.dp),
                 contentScale = ContentScale.Fit
@@ -44,10 +43,10 @@ fun CloseButton(
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
-fun CloseButtonPreview() {
+fun BackButtonPreview() {
     MidasTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            CloseButton {
+            BackButton {
 
             }
         }

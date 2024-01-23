@@ -24,9 +24,9 @@ class MainViewModel @Inject constructor(
         private set
 
     init {
-        appEntryUseCases.readAppEntry().onEach { shouldStartFromHomeScreen ->
-            startDestination = if (shouldStartFromHomeScreen) {
-                Route.AuthNavigation.route
+        appEntryUseCases.readAppEntry().onEach { shouldStartFromRegisterScreen ->
+            startDestination = if (shouldStartFromRegisterScreen) {
+                Route.AuthNavigationRegister.route
             } else {
                 Route.AppStartNavigation.route
             }

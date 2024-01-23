@@ -1,4 +1,4 @@
-package com.bhyte.midas.presentation.common
+package com.bhyte.midas.presentation.components.common
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,7 +11,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,7 +19,7 @@ import com.bhyte.midas.ui.theme.MidasTheme
 import com.bhyte.midas.ui.theme.archivoFontFamily
 
 @Composable
-fun PrimaryButton(
+fun TextButton(
     text: String,
     onClick: () -> Unit
 ) {
@@ -28,8 +27,7 @@ fun PrimaryButton(
         Button(
             onClick = onClick,
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFFFFC815),
-                contentColor = Color.Black
+                containerColor = MaterialTheme.colorScheme.background,
             ),
             modifier = Modifier
                 .height(50.dp)
@@ -42,7 +40,7 @@ fun PrimaryButton(
                     fontFamily = archivoFontFamily,
                     fontWeight = FontWeight.Medium,
                     fontSize = 16.sp
-                )
+                ),
             )
         }
     }
@@ -51,10 +49,10 @@ fun PrimaryButton(
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
-fun PrimaryButtonPreview() {
+fun TextButtonPreview() {
     MidasTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            PrimaryButton(text = "Get Started") {
+            TextButton(text = "Sign In With Google") {
 
             }
         }

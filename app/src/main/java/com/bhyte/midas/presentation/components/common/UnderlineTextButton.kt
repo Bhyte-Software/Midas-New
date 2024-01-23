@@ -1,4 +1,4 @@
-package com.bhyte.midas.presentation.common
+package com.bhyte.midas.presentation.components.common
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.height
@@ -49,7 +49,7 @@ fun UnderlineTextButton(
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
-fun TextButtonPreview() {
+fun UnderlineTextButtonPreview() {
     MidasTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
             UnderlineTextButton(text = "Sign In With Google") {
