@@ -1,4 +1,4 @@
-package com.bhyte.midas.presentation.dashboard.home
+package com.bhyte.midas.presentation.dashboard.screens.hub
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
@@ -14,14 +14,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.bhyte.midas.ui.theme.MidasTheme
 
 @Composable
-fun HomeScreen() {
+fun HubScreen() {
     Surface(color = MaterialTheme.colorScheme.background) {
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Home Screen")
+            Text(text = "Hub Screen")
         }
     }
 }
@@ -30,10 +30,10 @@ fun HomeScreen() {
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun HomeScreenPreview() {
+fun HubScreenPreview() {
     MidasTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            HomeScreen()
+            HubScreen()
         }
     }
 }

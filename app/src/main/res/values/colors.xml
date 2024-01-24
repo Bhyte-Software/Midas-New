@@ -19,4 +19,13 @@
 
 
     <color name="back_icon">#1A1C1E</color>
+    <color name="home_card">#FFEFB9</color>
+    <color name="card_one">#D0F085</color>
+    <color name="card_two">#FBEB7C</color>
+    <color name="card_three">#D0F085</color>
+
+    <color name="icon">#000000</color>
+    <color name="gradient">#6DE3E3E3</color>
+    <color name="gradient2">#00FFFFFF</color>
+
 </resources>

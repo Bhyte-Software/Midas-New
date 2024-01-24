@@ -58,7 +58,6 @@ fun SignUpSuccessfulScreen(navController: NavController) {
                     painter = painterResource(id = R.drawable.confetti),
                     contentDescription = null
                 )
-
                 Text(
                     text = "ACCOUNT CREATED SUCCESSFULLY",
                     modifier = Modifier.padding(horizontal = Dimens.SmallPadding),
@@ -68,9 +67,6 @@ fun SignUpSuccessfulScreen(navController: NavController) {
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Black,
                 )
-
-                Spacer(modifier = Modifier.height(5.dp))
-
                 Text(
                     text = "You can now go ahead and access dashboard",
                     modifier = Modifier

@@ -1,4 +1,4 @@
-package com.bhyte.midas.presentation.dashboard.recipients
+package com.bhyte.midas.presentation.dashboard.screens.send
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
@@ -14,14 +14,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.bhyte.midas.ui.theme.MidasTheme
 
 @Composable
-fun RecipientsScreen() {
+fun SendScreen() {
     Surface(color = MaterialTheme.colorScheme.background) {
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Recipients Screen")
+            Text(text = "Send Screen")
         }
     }
 }
@@ -30,10 +30,10 @@ fun RecipientsScreen() {
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun RecipientsScreenPreview() {
+fun SendScreenPreview() {
     MidasTheme {
         Surface(color = MaterialTheme.colorScheme.background) {
-            RecipientsScreen()
+            SendScreen()
         }
     }
 }
