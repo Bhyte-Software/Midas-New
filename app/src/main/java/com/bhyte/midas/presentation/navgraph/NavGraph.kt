@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import com.bhyte.midas.presentation.auth.login.AuthScreen
 import com.bhyte.midas.presentation.auth.login.EmailLoginScreen
 import com.bhyte.midas.presentation.auth.login.PhoneLoginScreen
 import com.bhyte.midas.presentation.auth.login.reset.ForgotEmailPasswordScreen
@@ -21,6 +22,8 @@ import com.bhyte.midas.presentation.auth.signup.VerifyIdentitySignUpScreen
 import com.bhyte.midas.presentation.auth.signup.VerifyPhoneSignUpScreen
 import com.bhyte.midas.presentation.components.navigation.DashboardNavigationScreen
 import com.bhyte.midas.presentation.components.navigation.getBottomNavigationItems
+import com.bhyte.midas.presentation.dashboard.screens.refer.ReferScreen
+import com.bhyte.midas.presentation.dashboard.screens.refer.TrackInvitesScreen
 import com.bhyte.midas.presentation.onboarding.OnBoardingScreen
 import com.bhyte.midas.presentation.onboarding.OnBoardingViewModel
 
@@ -53,6 +56,21 @@ fun NavGraph(
             ) {
                 val items = getBottomNavigationItems()
                 DashboardNavigationScreen(items = items)
+            }
+        }
+        navigation(
+            route = Route.ReferralNavigation.route,
+            startDestination = Route.TrackInviteScreen.route
+        ) {
+            composable(
+                route = Route.ReferScreen.route
+            ) {
+                ReferScreen()
+            }
+            composable(
+                route = Route.TrackInviteScreen.route
+            ) {
+                TrackInvitesScreen()
             }
         }
         navigation(
@@ -124,6 +142,11 @@ fun NavGraph(
                 route = Route.ForgotEmailPasswordScreen.route
             ) {
                 ForgotEmailPasswordScreen(navController = navController)
+            }
+            composable(
+                route = Route.AuthScreen.route
+            ) {
+                AuthScreen()
             }
         }
     }

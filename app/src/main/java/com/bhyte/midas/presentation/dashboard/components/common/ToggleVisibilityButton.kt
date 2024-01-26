@@ -21,6 +21,7 @@ import com.bhyte.midas.ui.theme.MidasTheme
 @Composable
 fun ToggleVisibilityButton(
     onClick: () -> Unit,
+    isBalanceVisible: Boolean
 ) {
     val backgroundColor = colorResource(id = R.color.background_light)
     Surface(color = backgroundColor) {
@@ -34,25 +35,13 @@ fun ToggleVisibilityButton(
                 ),
                 modifier = Modifier.size(50.dp)
             ) {
+                val iconResourceId = if (isBalanceVisible) R.drawable.showing else R.drawable.hidden
                 Image(
-                    painter = painterResource(id = R.drawable.showing),
+                    painter = painterResource(id = iconResourceId),
                     contentDescription = null,
                     modifier = Modifier.size(30.dp),
                     contentScale = ContentScale.Fit
                 )
-            }
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun ToggleVisibilityButtonPreview() {
-    MidasTheme {
-        Surface {
-            ToggleVisibilityButton {
-
             }
         }
     }

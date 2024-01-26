@@ -140,7 +140,9 @@ fun EmailLoginScreen(navController: NavHostController) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Box(modifier = Modifier.weight(0.5f)) {
-                        OutlineIconButton(onClick = {}, imageDrawableId = R.drawable.google)
+                        OutlineIconButton(onClick = {
+                            navController.navigate(Route.AuthScreen.route)
+                        }, imageDrawableId = R.drawable.google)
                     }
                     Spacer(modifier = Modifier.width(12.dp))
                     Box(modifier = Modifier.weight(0.5f)) {

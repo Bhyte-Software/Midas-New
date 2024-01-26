@@ -11,6 +11,7 @@ import androidx.compose.material.icons.outlined.CreditCard
 import androidx.compose.material.icons.outlined.Dashboard
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.PeopleAlt
+import com.bhyte.midas.R
 
 fun getBottomNavigationItems(): List<BottomNavigationItem> {
     return listOf(

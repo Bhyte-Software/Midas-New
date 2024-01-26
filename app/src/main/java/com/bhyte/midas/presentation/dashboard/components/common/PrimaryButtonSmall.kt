@@ -30,7 +30,7 @@ fun PrimaryButtonSmall(
             contentColor = Color.Black
         ),
         modifier = Modifier
-            .height(40.dp),
+            .height(42.dp),
         shape = RoundedCornerShape(size = 1000.dp)
     ) {
         Text(

@@ -3,6 +3,7 @@ package com.bhyte.midas.presentation.dashboard.components.home
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +18,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -46,26 +48,32 @@ fun DoMore() {
             Spacer(modifier = Modifier.height(20.dp))
 
             Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
+                val shape = RoundedCornerShape(15.dp)
                 Column(
                     modifier = Modifier
                         .width(200.dp)
-                        .background(cardOne, RoundedCornerShape(15.dp)),
+                        .clickable(onClick = {
+
+                        })
+                        .clip(shape)
+                        .background(cardOne, shape = shape),
                 ) {
-                    Text(
-                        text = "Send and request from your contacts",
-                        modifier = Modifier.padding(start = 10.dp, end = 10.dp, top = 20.dp),
-                        style = MaterialTheme.typography.bodyLarge,
-                        fontFamily = archivoFontFamily,
-                        lineHeight = 20.sp,
-                        color = Color.Black,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Medium
-                    )
+
                     Spacer(modifier = Modifier.height(20.dp))
                     Image(
                         painter = painterResource(id = R.drawable.onboarding1),
                         contentDescription = null
                     )
+                    Text(
+                        text = "Request from contacts",
+                        modifier = Modifier.padding(start = 15.dp, end = 15.dp, top = 20.dp),
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontFamily = archivoFontFamily,
+                        lineHeight = 20.sp,
+                        color = Color.Black,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Medium
+                    )
                     Spacer(modifier = Modifier.height(25.dp))
                 }
 
@@ -74,23 +82,26 @@ fun DoMore() {
                 Column(
                     modifier = Modifier
                         .width(200.dp)
+                        .clickable(onClick = {
+
+                        })
                         .background(cardTwo, RoundedCornerShape(15.dp)),
                 ) {
-                    Text(
-                        text = "Schedule your\ntransfer",
-                        modifier = Modifier.padding(start = 10.dp, end = 10.dp, top = 20.dp),
-                        style = MaterialTheme.typography.bodyLarge,
-                        fontFamily = archivoFontFamily,
-                        lineHeight = 20.sp,
-                        fontSize = 20.sp,
-                        color = Color.Black,
-                        fontWeight = FontWeight.Medium
-                    )
                     Spacer(modifier = Modifier.height(20.dp))
                     Image(
                         painter = painterResource(id = R.drawable.onboarding6),
                         contentDescription = null
                     )
+                    Text(
+                        text = "Schedule your\ntransfer",
+                        modifier = Modifier.padding(start = 15.dp, end = 15.dp, top = 20.dp),
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontFamily = archivoFontFamily,
+                        lineHeight = 20.sp,
+                        fontSize = 20.sp,
+                        color = Color.Black,
+                        fontWeight = FontWeight.Medium
+                    )
                     Spacer(modifier = Modifier.height(25.dp))
                 }
 
@@ -99,22 +110,25 @@ fun DoMore() {
                 Column(
                     modifier = Modifier
                         .width(200.dp)
+                        .clickable(onClick = {
+
+                        })
                         .background(cardThree, RoundedCornerShape(15.dp)),
                 ) {
+                    Spacer(modifier = Modifier.height(20.dp))
+                    Image(
+                        painter = painterResource(id = R.drawable.onboarding5),
+                        contentDescription = null
+                    )
                     Text(
                         text = "Keep your money safe for future",
-                        modifier = Modifier.padding(start = 10.dp, end = 10.dp, top = 20.dp),
+                        modifier = Modifier.padding(start = 15.dp, end = 15.dp, top = 20.dp),
                         style = MaterialTheme.typography.bodyLarge,
                         lineHeight = 20.sp,
                         fontFamily = archivoFontFamily,
                         color = Color.Black,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Medium
-                    )
-                    Spacer(modifier = Modifier.height(20.dp))
-                    Image(
-                        painter = painterResource(id = R.drawable.onboarding5),
-                        contentDescription = null
                     )
                     Spacer(modifier = Modifier.height(25.dp))
                 }
