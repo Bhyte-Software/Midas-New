@@ -17,6 +17,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -34,6 +38,10 @@ import com.bhyte.midas.ui.theme.archivoFontFamily
 @Composable
 fun ActionsCard() {
     val backgroundColor = colorResource(id = R.color.background_light)
+
+    var isBalanceVisible by remember { mutableStateOf(true) }
+    val actualBalance by remember { mutableStateOf("0.00") }
+
     Surface(color = MaterialTheme.colorScheme.background, modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(top = 10.dp)) {
             Column(
@@ -50,24 +58,33 @@ fun ActionsCard() {
                 ) {
                     Column {
                         Row(verticalAlignment = Alignment.CenterVertically) {
+                            val repeatCount = actualBalance.length
+                            val displayedBalance =
+                                if (isBalanceVisible) "¢ $actualBalance" else "¢ " + "*".repeat(
+                                    repeatCount
+                                )
                             Text(
-                                text = "¢ 0.00",
+                                text = displayedBalance,
                                 style = MaterialTheme.typography.displaySmall,
                                 fontSize = 38.sp,
                                 fontWeight = FontWeight.Bold,
                                 fontFamily = archivoFontFamily
                             )
                             Spacer(modifier = Modifier.width(10.dp))
-                            ToggleVisibilityButton {
+                            ToggleVisibilityButton(
+                                onClick = {
+                                    isBalanceVisible = !isBalanceVisible
+                                },
+                                isBalanceVisible = isBalanceVisible
+                            )
 
-                            }
                         }
                         Spacer(modifier = Modifier.height(0.dp))
                         Text(
                             text = "Ghana Cedi",
                             style = MaterialTheme.typography.bodyLarge,
                             fontFamily = archivoFontFamily,
-                            fontWeight = FontWeight.Normal
+                            fontWeight = FontWeight.Medium
                         )
                     }
 

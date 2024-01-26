@@ -1,20 +1,16 @@
 package com.bhyte.midas.presentation.components.navigation
 
 import android.content.res.Configuration
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -35,10 +31,11 @@ import androidx.navigation.compose.rememberNavController
 import com.bhyte.midas.R
 import com.bhyte.midas.presentation.dashboard.screens.cards.CardsScreen
 import com.bhyte.midas.presentation.dashboard.screens.home.HomeScreen
-import com.bhyte.midas.screens.main.HubScreen
-import com.bhyte.midas.screens.main.RecipientsScreen
-import com.bhyte.midas.screens.main.SendScreen
+import com.bhyte.midas.presentation.dashboard.screens.hub.HubScreen
+import com.bhyte.midas.presentation.dashboard.screens.recipients.RecipientsScreen
+import com.bhyte.midas.presentation.dashboard.screens.send.SendScreen
 import com.bhyte.midas.ui.theme.MidasTheme
+import com.bhyte.midas.ui.theme.archivoFontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,8 +49,7 @@ fun DashboardNavigationScreen(items: List<BottomNavigationItem>) {
     val primaryColor = colorResource(id = R.color.primary)
 
     Scaffold(bottomBar = {
-        NavigationBar (
-        ) {
+        NavigationBar {
             val navBackStackEntry: NavBackStackEntry? by navController.currentBackStackEntryAsState()
             val currentDestination: NavDestination? = navBackStackEntry?.destination
 
@@ -74,7 +70,10 @@ fun DashboardNavigationScreen(items: List<BottomNavigationItem>) {
                         }
                     },
                     label = {
-                        Text(text = item.title)
+                        Text(
+                            text = item.title,
+                            fontFamily = archivoFontFamily,
+                        )
                     },
                     icon = {
                         BadgedBox(badge = {

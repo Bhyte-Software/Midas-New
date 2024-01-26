@@ -42,7 +42,7 @@ fun HomeTransactions() {
                 fontWeight = FontWeight.Medium
             )
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(15.dp))
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 FilledIconButton(
@@ -62,13 +62,14 @@ fun HomeTransactions() {
                     )
                 }
 
-                Spacer(modifier = Modifier.width(10.dp))
+                Spacer(modifier = Modifier.width(15.dp))
 
                 Text(
                     text = "No transactions yet",
                     modifier = Modifier,
                     style = MaterialTheme.typography.bodyLarge,
                     fontFamily = archivoFontFamily,
+                    fontSize = 20.sp,
                 )
 
             }
